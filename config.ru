@@ -5,3 +5,5 @@ require 'grape'
 require './app/core'
 
 run Users
+
+use ActiveRecord::ConnectionAdapters::ConnectionManagement

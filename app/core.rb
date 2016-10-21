@@ -1,3 +1,5 @@
+RACK_ENV = (ENV['RACK_ENV'] || 'development').to_sym
+
 require 'rubygems'
 require 'bundler'
 Bundler.require
