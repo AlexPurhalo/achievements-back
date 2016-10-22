@@ -20,6 +20,7 @@ end
 group :test do
   gem 'rack-test', '~> 0.6.3', require: 'rack/test'
   gem 'rspec', '~> 3.5'
+  gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1'
 end
 
 group :production do

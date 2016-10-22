@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  validates :username, presence: true, uniqueness: true
+  validates :enc_password, presence: true
+  validates :username, presence: true, uniqueness: { message: 'username has already taken' }
 
   before_create :generate_token
 
