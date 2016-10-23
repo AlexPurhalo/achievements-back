@@ -8,6 +8,7 @@ Bundler.require :test
 require 'rspec'
 require 'rack/test'
 require 'shoulda/matchers'
+require 'database_cleaner'
 
 require './app/core'
 
@@ -19,6 +20,15 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     ActiveRecord::Base.logger = nil
+
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
   end
 end
 

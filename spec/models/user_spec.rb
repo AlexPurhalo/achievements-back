@@ -7,4 +7,9 @@ RSpec.describe User, type: :model do
     should validate_uniqueness_of(:username)
         .with_message('username has already taken')
   }
+
+  it 'generates a jwt for user' do
+    user = User.create(username: 'AlexP', enc_password: 'lol')
+    expect(user.access_token).to be_truthy
+  end
 end
