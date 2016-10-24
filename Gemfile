@@ -13,6 +13,8 @@ gem 'awesome_print', '~> 1.6', '>= 1.6.1'
 
 gem 'foreman', '~> 0.82.0'
 
+gem 'rack-cors', :require => 'rack/cors'
+
 group :development do
   gem 'sqlite3', '~> 1.3', '>= 1.3.11'
 end
