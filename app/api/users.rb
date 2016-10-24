@@ -29,7 +29,7 @@ class Users < Grape::API
       end
 
       # saves record to DB and shows it's dat if record has the correct params else shows the errors messages
-      @user.save ? @user : { errors: errors }
+      @user.save ? @user : error!({ errors: errors}, 422)
     end
   end
 end

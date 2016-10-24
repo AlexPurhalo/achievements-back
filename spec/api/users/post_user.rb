@@ -10,12 +10,20 @@ describe 'POST users' do
       post '/users', username: 'Alex', enc_password: 'XJQBMKQQNt96ulGwzeQ='
     end
 
-    it 'has a username' do
-      expect(last_response.body).to include('Alex'.to_json)
+    describe 'body' do
+      it 'has a username' do
+        expect(last_response.body).to include('Alex'.to_json)
+      end
+
+      it 'has a password' do
+        expect(last_response.body).to include('XJQBMKQQNt96ulGwzeQ='.to_json)
+      end
     end
 
-    it 'has a password' do
-      expect(last_response.body).to include('XJQBMKQQNt96ulGwzeQ='.to_json)
+    describe 'headers' do
+      it 'has a 201 status says that record was saved to DB' do
+        expect(last_response.status).to eq(201)
+      end
     end
   end
 
@@ -60,6 +68,14 @@ describe 'POST users' do
         post '/users', username: '*Mr Al*', enc_password: 'gUn/IcyiQQ=='
 
         expect(last_response.body).to include('only letters and numbers for username')
+      end
+    end
+
+    describe 'headers' do
+      it 'has 422 status says about data that can not be served by server side' do
+        post '/users'
+
+        expect(last_response.status).to eq(422)
       end
     end
   end
