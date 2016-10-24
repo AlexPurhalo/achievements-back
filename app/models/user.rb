@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
+  # password validation
   validates :enc_password, presence: true
-  validates :username, presence: true, uniqueness: { message: 'username has already taken' }
+
+  # username validation
+  validates :username, presence: true,
+            uniqueness: true,
+            format: /\A[a-z\d]*\Z/i
 
   before_create :generate_token
 

@@ -55,6 +55,12 @@ describe 'POST users' do
 
         expect(last_response.body).to include('username has already taken'.to_json)
       end
+
+      it 'not only letters or numbers' do
+        post '/users', username: '*Mr Al*', enc_password: 'gUn/IcyiQQ=='
+
+        expect(last_response.body).to include('only letters and numbers for username')
+      end
     end
   end
 end

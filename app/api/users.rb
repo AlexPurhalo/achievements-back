@@ -13,9 +13,11 @@ class Users < Grape::API
 
       errors = Array.new                                            # empty array for errors messages pushing
 
+
       if params[:username]                                                              # username validation
         errors.push('username can not be empty') if params[:username].length < 1
         errors.push('username has already taken') if User.find_by(username: params[:username])
+        errors.push('only letters and numbers for username') unless /\A[a-z\d]*\Z/i.match(params[:username])
       else
         errors.push('username is required')
       end
