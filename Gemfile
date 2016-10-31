@@ -12,8 +12,11 @@ gem 'racksh', '~> 1.0'
 gem 'awesome_print', '~> 1.6', '>= 1.6.1'
 
 gem 'foreman', '~> 0.82.0'
+gem 'rerun', '~> 0.11.0'
 
 gem 'rack-cors', :require => 'rack/cors'
+
+gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 
 group :development do
   gem 'sqlite3', '~> 1.3', '>= 1.3.11'
