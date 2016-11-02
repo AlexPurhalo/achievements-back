@@ -2,6 +2,10 @@ class Sessions < Grape::API
   format :json
 
   resources :sessions do
+    get '/' do
+      'gogo'
+    end
+
     params do                                                                      # user parameters receiving
       :username
       :password

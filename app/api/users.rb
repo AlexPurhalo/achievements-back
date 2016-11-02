@@ -35,6 +35,4 @@ class Users < Grape::API
       @user.save ? @user : error!({ errors: errors}, 422)
     end
   end
-
-
 end
