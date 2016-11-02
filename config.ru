@@ -5,7 +5,7 @@ require 'grape'
 require 'rack/cors'
 require './app/core'
 
-run Users
+run App
 
 use ActiveRecord::ConnectionAdapters::ConnectionManagement
 
