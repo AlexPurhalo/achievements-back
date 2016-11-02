@@ -6,6 +6,17 @@ class Users < Grape::API
       User.all
     end
 
+    get '/:id' do
+      errors = Array.new
+      begin
+        @user = User.find(params[:id]) # looks for certain user
+        { id: @user.id, username: @user.username }
+      rescue ActiveRecord::RecordNotFound
+        errors.push('user is not exist')
+        error!({ errors: errors}, 500)
+      end
+    end
+
     params do                                                                      # user parameters receiving
       :username
       :enc_password
