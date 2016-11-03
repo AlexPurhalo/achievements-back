@@ -2,8 +2,13 @@ class Users < Grape::API
   format :json
 
   resources :users do
+    include Grape::Kaminari
+    paginate per_page: 10
+
     get '/' do
-      User.all
+      @users = User.all
+      @users
+      paginate(Kaminari.paginate_array(@users))
     end
 
     get '/:id' do

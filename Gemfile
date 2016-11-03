@@ -18,6 +18,8 @@ gem 'rack-cors', :require => 'rack/cors'
 
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 
+gem 'grape-kaminari'
+
 group :development do
   gem 'sqlite3', '~> 1.3', '>= 1.3.11'
 end
