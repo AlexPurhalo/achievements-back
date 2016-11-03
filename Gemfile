@@ -20,6 +20,8 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 
 gem 'grape-kaminari'
 
+gem 'grape-rabl', '~> 0.4.2', require: 'grape/rabl'
+
 group :development do
   gem 'sqlite3', '~> 1.3', '>= 1.3.11'
 end

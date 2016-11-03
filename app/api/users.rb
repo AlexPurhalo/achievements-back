@@ -1,18 +1,19 @@
 class Users < Grape::API
   format :json
+  formatter :json, Grape::Formatter::Rabl
 
   resources :users do
     include Grape::Kaminari
     paginate per_page: 10
 
-    get '/' do
-      @users = User.all
-      @users
-      paginate(Kaminari.paginate_array(@users))
+    get '/', rabl: 'users/users' do
+      # renders object with users array and meta data about page
+      @users = paginate(Kaminari.paginate_array(User.all))
     end
 
     get '/:id' do
       errors = Array.new
+
       begin
         @user = User.find(params[:id]) # looks for certain user
         { id: @user.id, username: @user.username }
