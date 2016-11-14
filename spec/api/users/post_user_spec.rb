@@ -1,6 +1,6 @@
 require 'helper_spec'
 
-describe 'POST users' do
+describe 'POST user' do
   def app
     Users
   end
