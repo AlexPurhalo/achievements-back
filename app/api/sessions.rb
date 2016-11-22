@@ -31,7 +31,7 @@ class Sessions < Grape::API
       end
 
       # if no errors shows jwt token otherwise shows errors array with: 422  -  "unprocessable entity" status
-      errors.length < 1 ? { jwt: @user.access_token} : error!({ errors: errors }, 422)
+      errors.length < 1 ? { jwt: @user.access_token, id: @user.id } : error!({ errors: errors }, 422)
     end
   end
 end
