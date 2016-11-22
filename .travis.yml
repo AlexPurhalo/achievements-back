@@ -1,0 +1,32 @@
+sudo: false
+
+language: ruby
+
+rvm:
+  - 2.3.1
+
+before_install:
+  - gem install bundler -v 1.13.2
+  - gem install awesome_print -v 1.7.0
+  - gem install bcrypt -v 3.1.11
+  - gem install foreman -v 0.82.0
+  - gem install grape -v 0.18.0
+  - gem install grape-activerecord -v 1.1.2
+  - gem install grape-kaminari -v 0.1.9
+  - gem install grape-rabl -v 0.4.2
+  - gem install pg -v 0.18.1
+  - gem install pry -v 0.10.4
+  - gem install rack-cors -v 0.4.0
+  - gem install rack-test -v 0.6.3
+  - gem install racksh -v 1.0.0
+  - gem install rake -v 10.5.0
+  - gem install rerun -v 0.11.0
+  - gem install rspec -v 3.5.0
+  - gem install shoulda-matchers -v 3.1.1
+  - gem install sqlite3 -v 1.3.12
+
+script:
+  - "bundle exec rake db:migrate"
+  - "bundle exec rake db:test:prepare"
+  - "rspec"
+
