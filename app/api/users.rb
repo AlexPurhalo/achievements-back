@@ -11,24 +11,30 @@ class Users < Grape::API
       @users = paginate(Kaminari.paginate_array(User.all))
     end
 
-    get '/:id' do
+    get '/:id', rabl: 'users/user' do
       errors = Array.new
 
       begin
         @user = User.find(params[:id]) # looks for certain user
-        { id: @user.id, username: @user.username }
+        @user
+          # { id: @user.id, username: @user.username, profile: @user.profile, skills: @user.skills }
       rescue ActiveRecord::RecordNotFound
         errors.push('user is not exist')
         error!({ errors: errors}, 500)
       end
     end
 
+    params do                                                                      # user parameters receiving
+      :username
+      :enc_password
+      :profile
+      :skills
+      :access_token
+    end
+
     desc 'Creates user'
     post '/' do                                                              # POST request to /users address
-      params do                                                                      # user parameters receiving
-        :username
-        :enc_password
-      end
+
 
       @user = User.new params
 
@@ -54,16 +60,13 @@ class Users < Grape::API
 
     desc 'Updates user'
     put '/:id', rabl: 'users/user' do
-      params do
-        :id
-        :username
-      end
       @user = User.find(params[:id])
-      @user.update params
-      # @user = User.find(params[:id]) if params[:id]
-      # @user.skills = params[:skills]
-      # @user
-      # { id: @user.id, username: @user.username,  profile: @user.profile, skills: @user.skills }
+      errors, token = Array.new, request.headers['X-Access-Token']
+
+      errors.push('access token is required') unless token
+      errors.push('person confirmation was failed') if token && token != @user.access_token
+
+      errors.length < 1 ? @user.update(params) : error!({ errors: errors}, 422)
     end
   end
 end

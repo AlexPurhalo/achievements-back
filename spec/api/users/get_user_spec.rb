@@ -5,15 +5,20 @@ describe 'GET user' do
     Users
   end
 
+  before { Users.before { env['api.tilt.root'] = 'app/views' } }
+
   before do
     post '/users', username: 'AlexP', enc_password: '$2a$10$wJWNvkkeFdKedov9BKKGrOx7JrkRtbNAlgkSCt9zkozSSqL7nUV42'
     get '/users/1/'
   end
 
 
-
   describe 'the positive specs' do
     describe 'includes the correct objects with keys' do
+      it 'has a body with correct data' do
+        expect(last_response.body).to eq({ username: 'AlexP', id: 1, profile: nil, skills: nil }.to_json)
+      end
+
       it 'include a user id' do
         expect(last_response.body).to include('id')
       end
@@ -58,4 +63,17 @@ describe 'GET user' do
       expect(last_response.status).to eq(200)
     end
   end
+
+  # describe do
+  #   before do
+  #     post '/users', username: 'BanLaden',
+  #          enc_password: '$2a$10$wJWNvkkeFdKedov9BKKGrOx7JrkRtbNAlgkSCt9zkozSSqL7nUV42',
+  #          profile: 'wondering'
+  #     get '/users/2/'
+  #   end
+  #
+  #   it 'returns data bout profile' do
+  #     expect(last_response.body).to eq({ username: 'BanLaden', id: 2, profile: 'wonderingf' })
+  #   end
+  # end
 end
