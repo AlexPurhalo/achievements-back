@@ -23,13 +23,13 @@ class Users < Grape::API
       end
     end
 
-    params do                                                                      # user parameters receiving
-      :username
-      :enc_password
-    end
-
     desc 'Creates user'
     post '/' do                                                              # POST request to /users address
+      params do                                                                      # user parameters receiving
+        :username
+        :enc_password
+      end
+
       @user = User.new params
 
       errors = Array.new                                            # empty array for errors messages pushing
@@ -50,6 +50,20 @@ class Users < Grape::API
 
       # saves record to DB and shows it's dat if record has the correct params else shows the errors messages
       @user.save ? @user : error!({ errors: errors}, 422)
+    end
+
+    desc 'Updates user'
+    put '/:id', rabl: 'users/user' do
+      params do
+        :id
+        :username
+      end
+      @user = User.find(params[:id])
+      @user.update params
+      # @user = User.find(params[:id]) if params[:id]
+      # @user.skills = params[:skills]
+      # @user
+      # { id: @user.id, username: @user.username,  profile: @user.profile, skills: @user.skills }
     end
   end
 end
