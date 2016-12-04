@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161021141130) do
+ActiveRecord::Schema.define(version: 20161204125028) do
+
+  create_table "frameworks", force: :cascade do |t|
+    t.string "framework"
+  end
+
+  create_table "frameworks_users", force: :cascade do |t|
+    t.integer "framework_id"
+    t.integer "user_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string  "skill"
+    t.integer "user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string  "username"

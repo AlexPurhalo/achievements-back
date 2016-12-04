@@ -16,7 +16,7 @@ describe 'GET user' do
   describe 'the positive specs' do
     describe 'includes the correct objects with keys' do
       it 'has a body with correct data' do
-        expect(last_response.body).to eq({ username: 'AlexP', id: 1, profile: nil, skills: nil }.to_json)
+        expect(last_response.body).to eq({username: 'AlexP', id: 1, profile: nil, skills: nil, frameworks: [] }.to_json)
       end
 
       it 'include a user id' do

@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   before_create :generate_token
 
+  has_and_belongs_to_many :frameworks
+
   protected
   def generate_token
     self.access_token = SecureRandom.urlsafe_base64

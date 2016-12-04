@@ -17,7 +17,7 @@ describe 'PUT user' do
       put '/users/1', profile: 'Sites builder :D', skills: 'Sexy'
     end
 
-    let (:user_data) { { username: 'AlexP', id: 1, profile: 'Sites builder :D', skills: 'Sexy' } }
+    let (:user_data) { {username: 'AlexP', id: 1, profile: 'Sites builder :D', skills: 'Sexy', frameworks: [] } }
     context 'after put request' do
       it 'updates data about user' do
         get '/users/1'
