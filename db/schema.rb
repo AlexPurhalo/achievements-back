@@ -13,38 +13,33 @@
 
 ActiveRecord::Schema.define(version: 20161204125028) do
 
-  create_table "frameworks", force: :cascade do |t|
-    t.string "framework"
+  create_table "frameworks", force: true do |t|
+    t.string "framework", limit: nil
   end
 
-  create_table "frameworks_users", force: :cascade do |t|
+  create_table "frameworks_users", force: true do |t|
     t.integer "framework_id"
     t.integer "user_id"
   end
 
-  create_table "skills", force: :cascade do |t|
-    t.string  "skill"
-    t.integer "user_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string  "username"
-    t.string  "enc_password"
-    t.string  "access_token"
-    t.string  "profile"
-    t.string  "skills"
-    t.string  "email"
-    t.string  "name"
-    t.string  "mobile"
-    t.string  "avatar"
+  create_table "users", force: true do |t|
+    t.string  "username",     limit: nil
+    t.string  "enc_password", limit: nil
+    t.string  "access_token", limit: nil
+    t.string  "profile",      limit: nil
+    t.string  "skills",       limit: nil
+    t.string  "email",        limit: nil
+    t.string  "name",         limit: nil
+    t.string  "mobile",       limit: nil
+    t.string  "avatar",       limit: nil
     t.integer "age"
-    t.string  "city"
-    t.string  "linkedin"
-    t.string  "github"
-    t.string  "skype"
-    t.string  "vk"
-    t.string  "twitter"
-    t.string  "facebook"
+    t.string  "city",         limit: nil
+    t.string  "linkedin",     limit: nil
+    t.string  "github",       limit: nil
+    t.string  "skype",        limit: nil
+    t.string  "vk",           limit: nil
+    t.string  "twitter",      limit: nil
+    t.string  "facebook",     limit: nil
   end
 
 end

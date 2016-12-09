@@ -38,3 +38,5 @@ group :production do
 end
 
 gem 'carrierwave', '~> 0.11.2'
+gem 'fog', '~> 1.3.1'
+gem "figaro"

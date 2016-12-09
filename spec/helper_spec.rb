@@ -8,6 +8,7 @@ Bundler.require :test
 require 'rspec'
 require 'rack/test'
 require 'shoulda/matchers'
+require 'carrierwave/orm/activerecord'
 require 'database_cleaner'
 
 require './app/core'
