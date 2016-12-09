@@ -16,4 +16,6 @@ class User < ActiveRecord::Base
     self.access_token = SecureRandom.urlsafe_base64
     generate_token if User.exists?(access_token: self.access_token)
   end
+
+  mount_uploader :avatar, AvatarUploader
 end

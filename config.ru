@@ -4,6 +4,8 @@ require 'bundler/setup'
 require 'grape'
 require 'rack/cors'
 require 'rabl'
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
 require './app/core'
 
 run App
