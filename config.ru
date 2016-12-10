@@ -30,13 +30,12 @@ Rabl.configure do |config|
   config.include_child_root = false
 end
 
-
 CarrierWave.configure do |config|
   config.fog_credentials = {
-      :provider               => ENV['PROVIDER'],
-      :aws_access_key_id      => ENV['AWS_ACCESS_KEY_ID'],
-      :aws_secret_access_key  => ENV['AWS_SECRET_ACCESS_KEY'],
-      :region                 => ENV['AWS_REGION']
+      :provider               => 'AWS',
+      :aws_access_key_id      => 'AKIAJ57P7IDFWSWETF7Q',
+      :aws_secret_access_key  => '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',
+      :region                 => 'us-west-2'
   }
-  config.fog_directory  = ENV['S3_BUCKET_NAME']
+  config.fog_directory  = 'achievements-bucket'
 end
