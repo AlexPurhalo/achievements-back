@@ -1,16 +1,5 @@
 class Sessions < Grape::API
-  format :json
-
   resources :sessions do
-    get '/' do
-      'gogo'
-    end
-
-    params do                                                                      # user parameters receiving
-      :username
-      :password
-    end
-
     post '/' do
       username, password = params[:username], params[:password]          # stocks username and password params
 
@@ -27,7 +16,7 @@ class Sessions < Grape::API
         errors.push('user is not exist') unless @user
 
         # passwords matching validation if user was found
-        (errors.push('wrong password') unless BCrypt::Password.new(@user.enc_password) == password) if @user
+        (errors.push('wrong password') unless BCrypt::Password.new(@user.password) == password) if @user
       end
 
       # if no errors shows jwt token otherwise shows errors array with: 422  -  "unprocessable entity" status

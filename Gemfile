@@ -3,8 +3,7 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 
 gem 'grape', '~> 0.18.0'
-gem 'grape-activerecord', '~> 1.1', '>= 1.1.2'
-
+gem 'sequel', '~> 4.41'
 gem 'rake', '~> 10.4', '>= 10.4.2'
 
 gem 'pry', '~> 0.10.4'
@@ -18,13 +17,11 @@ gem 'rack-cors', :require => 'rack/cors'
 
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 
-gem 'grape-kaminari'
 
 gem 'grape-rabl', '~> 0.4.2', require: 'grape/rabl'
 
-group :development do
-  gem 'sqlite3', '~> 1.3', '>= 1.3.11'
-end
+gem 'sqlite3', :group => 'development'
+gem 'pg', :group => 'production'
 
 group :test do
   gem 'rack-test', '~> 0.6.3', require: 'rack/test'
@@ -33,10 +30,10 @@ group :test do
   gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
 end
 
-group :production do
-  gem 'pg', '0.18.1'
-end
+gem "carrierwave"
+gem "carrierwave-sequel", require: "carrierwave/sequel"
+gem 'fog'
+gem "fog-aws"
+gem 'figaro'
 
-gem 'carrierwave', '~> 0.11.2'
-gem 'fog', '~> 1.3.1'
-gem "figaro"
+gem 'grape-kaminari'

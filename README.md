@@ -1,8 +1,8 @@
-<h3>Installation</h3>
-<ul>
-    <li>$ bundle install</li>
-    <li>$ bundle exec rake db:migrate</li>
-    <li>$ bundle exec rake db:test:prepare</li>
-    <li>$ rspec</li>
-    <li>$ foreman start</li>
-</ul>
+### Usage
+    $ bundle install
+    $ sequel -m db/migrations/ sqlite://db/database.db
+    $ rackup -p 5000
+     
+### Testing
+    $ sequel -m db/migrations/ sqlite://db/test.db
+    $ rspec

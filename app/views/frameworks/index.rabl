@@ -1,2 +1,2 @@
 collection @frameworks
-attributes :id, :framework
+attributes :id, :name

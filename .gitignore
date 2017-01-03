@@ -1,3 +1,5 @@
 .idea
 db/*.sqlite3
 uploads/*
+db/database.db
+db/test.db

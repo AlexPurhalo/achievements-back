@@ -11,7 +11,7 @@ Dir.glob("#{app_base}/app/models/*.rb").each { |i| require i }
 
 class App < Grape::API
   format :json
-
+  formatter :json, Grape::Formatter::Rabl
   mount Users
   mount Sessions
   mount Frameworks

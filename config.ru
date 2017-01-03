@@ -5,12 +5,19 @@ require 'grape'
 require 'rack/cors'
 require 'rabl'
 require 'carrierwave'
-require 'carrierwave/orm/activerecord'
+require 'carrierwave/sequel'
+require 'carrierwave/storage/abstract'
+require 'carrierwave/storage/file'
+require 'carrierwave/storage/fog'
+require 'sequel'
+require 'fog'
+
+
+DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://db/database.db')
+
 require './app/core'
 
 run App
-
-use ActiveRecord::ConnectionAdapters::ConnectionManagement
 
 use Rack::Cors do
   allow do
@@ -33,9 +40,9 @@ end
 CarrierWave.configure do |config|
   config.fog_credentials = {
       :provider               => 'AWS',
-      :aws_access_key_id      => 'AKIAJ57P7IDFWSWETF7Q',
-      :aws_secret_access_key  => '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',
+      :aws_access_key_id      => 'AKIAIAE5UKATH3QNC6OA',
+      :aws_secret_access_key  => '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',
       :region                 => 'us-west-2'
   }
-  config.fog_directory  = 'achievements-bucket'
+  config.fog_directory  = 'achievements-aws'
 end

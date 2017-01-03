@@ -1,38 +1,32 @@
 class UserFrameworks < Grape::API
   resources :users do
-    post '/:id/frameworks' do
-      errors = Array.new
-      @user = User.find(params[:id])
+    post '/:id/frameworks', rabl: 'frameworks/index' do
+      user = User[params[:id]]
+      framework = Framework.where(name: params[:framework]).first
 
-      @framework = Framework.where(framework: params[:framework]).first
-
-      if @framework
-        @user.frameworks.map do |framework|
-          framework[:framework] == params[:framework] && errors.push('user is already have this framework')
-        end
-
-        errors.length < 1 && @user.frameworks.push(@framework)
+      if framework == nil
+        user.add_framework(Framework.create(name: params[:framework]))
       else
-        @framework = Framework.create(framework: params[:framework])
-        @user.frameworks.push(@framework)
+        user.add_framework(framework)
       end
-      errors.length > 0 ? error!({ errors: errors}, 422) : @user.frameworks
+
+      @frameworks = user.frameworks
     end
 
-    get '/:id/frameworks' do
-      @user = User.find(params[:id])
-      @user_frameworks = @user.frameworks
+    get '/:id/frameworks', rabl: 'frameworks/index' do
+      @user = User[params[:id]]
+      @frameworks = @user.frameworks
     end
 
-    delete '/:id/frameworks/:id' do
+    delete '/:id/frameworks/:id', rabl: 'frameworks/index' do
       user_id, framework_id = params[:id][0], params[:id][1]
+      #
 
-      @user = User.find(user_id)
+      @user = User[user_id]
       @framework = Framework.where(id: framework_id).first
-      @user.frameworks -= [@framework] # destroys framework from other
-      @user.save
+      @user.remove_framework(@framework)
       @framework.users.count < 1 && @framework.destroy # destroys framework if it doesn't belong to any user
-      @user.frameworks
+      @frameworks = @user.frameworks
     end
   end
 end
