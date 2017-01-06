@@ -16,4 +16,5 @@ class App < Grape::API
   mount Sessions
   mount Frameworks
   mount UserFrameworks
+  mount UserAchievements
 end
