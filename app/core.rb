@@ -17,4 +17,7 @@ class App < Grape::API
   mount Frameworks
   mount UserFrameworks
   mount UserAchievements
+  mount UserWorks
+  mount Technologies
+  mount Images
 end

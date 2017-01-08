@@ -40,9 +40,9 @@ end
 CarrierWave.configure do |config|
   config.fog_credentials = {
       :provider               => 'AWS',
-      :aws_access_key_id      => 'AKIAIAE5UKATH3QNC6OA',
-      :aws_secret_access_key  => '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',
+      :aws_access_key_id      => 'AKIAJF7BWLSLOTT4N6KQ',
+      :aws_secret_access_key  => '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',
       :region                 => 'us-west-2'
   }
-  config.fog_directory  = 'achievements-aws'
+  config.fog_directory  = 'elena-tour-prod'
 end
